@@ -1,0 +1,25 @@
+{
+  "name": "in-memory-queue",
+  "version": "1.0.0",
+  "description": "Simple in-memory job queue",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/void666/in-memory-queue.git"
+  },
+  "author": "Sushim Mukul Dutta",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/void666/in-memory-queue/issues"
+  },
+  "homepage": "https://github.com/void666/in-memory-queue#readme",
+  "dependencies": {
+    "async": "^2.6.0",
+    "bluebird": "^3.5.1",
+    "lodash": "^4.17.4",
+    "shortid": "^2.2.8"
+  }
+}
