@@ -86,8 +86,8 @@
       <file leaf-file-name="message.handler.service.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../in-memory-queue/services/message.handler.service.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-513">
-              <caret line="0" column="46" selection-start-line="0" selection-start-column="46" selection-end-line="0" selection-end-column="46" />
+            <state relative-caret-position="237">
+              <caret line="50" column="55" selection-start-line="50" selection-start-column="55" selection-end-line="50" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -367,12 +367,12 @@
       <option name="presentableId" value="Default" />
       <updated>1516549597361</updated>
       <workItem from="1516549599747" duration="32740000" />
-      <workItem from="1516975523381" duration="19298000" />
+      <workItem from="1516975523381" duration="19450000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="52038000" />
+    <option name="totallyTimeSpent" value="52190000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
@@ -673,8 +673,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../in-memory-queue/services/message.handler.service.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-513">
-          <caret line="0" column="46" selection-start-line="0" selection-start-column="46" selection-end-line="0" selection-end-column="46" />
+        <state relative-caret-position="237">
+          <caret line="50" column="55" selection-start-line="50" selection-start-column="55" selection-end-line="50" selection-end-column="55" />
           <folding />
         </state>
       </provider>
