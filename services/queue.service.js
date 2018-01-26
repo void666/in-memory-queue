@@ -1,18 +1,16 @@
 var utils = require('../utilities/util');
 var _ = require('lodash');
 var Queue = require('../models/queue');
-var topicService = require('./topic.service');
 var async = require('async');
 var handlerService = require('./message.handler.service');
-
-var QueueConfiguration = {
-    size: 200,
-    maxRetry: 3
-};
-
+var QueueConfiguration = require('../config').queue_config;
 var QueueInstance = null;
 var pollinglock = false;
 
+/**
+ * forever queue polling function.
+ * @param next
+ */
 var startQueuePolling = function (next) {
     while (!QueueInstance.isEmpty() && !pollinglock) {
         pollinglock = true;
@@ -29,6 +27,10 @@ var startQueuePolling = function (next) {
     next();
 };
 
+/**
+ * Initialises Queue instance.
+ *
+ */
 var initQueue = function () {
     var size = _.get(QueueConfiguration, 'size');
     var maxRetry = _.get(QueueConfiguration, 'maxRetry');
@@ -40,10 +42,14 @@ var initQueue = function () {
         QueueInstance = new Queue(size, maxRetry);
     }
     console.log(`Queue has been initialized with size : ${QueueInstance.getSize()} and maxRetries : ${QueueInstance.getRetries()}`);
-    QueueInstance.status();
     async.forever(startQueuePolling, function (err) {});
 };
 
+/**
+ * Pushes pre-built message to the queue.
+ * @param message
+ * @return {*}
+ */
 var pushMessageToQueue = function (message) {
     if (!QueueInstance) {
         initQueue();
@@ -57,8 +63,15 @@ var pushMessageToQueue = function (message) {
     return Promise.resolve();
 };
 
+var getStatus = function () {
+    if (!QueueInstance) {
+        initQueue();
+    }
+    QueueInstance.status();
+};
 
 module.exports = {
     pushMessageToQueue: pushMessageToQueue,
-    QueueConfiguration: QueueConfiguration
+    QueueConfiguration: QueueConfiguration,
+    getStatus : getStatus
 };

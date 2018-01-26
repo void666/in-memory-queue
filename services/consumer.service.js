@@ -23,8 +23,9 @@ var createConsumer = function (topic, priority, handler) {
             var consumer = new Consumer(topic, priority, handler);
             return topicService.registerConsumerForTopic(topic, consumer)
                 .then(() => {
-                    consumer.print();
                     console.log(`Consumer created successfully`);
+                    consumer.print();
+                    return Promise.resolve();
                 });
         });
 };
