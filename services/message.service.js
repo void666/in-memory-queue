@@ -47,7 +47,7 @@ var test = function () {
     };
 };
 
-/*queueService.QueueConfiguration.size = 100;
+queueService.QueueConfiguration.size = 100;
 queueService.QueueConfiguration.maxRetry = 9;
 topicService.createTopic('topic1');
 topicService.createTopic('topic4');
@@ -73,7 +73,7 @@ consumerService.createConsumer('topic4', 2, function (message) {
 });
 consumerService.createConsumer('topic4', 99, function (message) {
     console.log(`In consumer handler with priority 99, this will be rejected for topic4 for message ${message.getId()}`);
-    return Promise.reject(`this will be rejected for topic1 for message ${message.getId()}`);*/
+    return Promise.reject(`this will be rejected for topic1 for message ${message.getId()}`);
 });
 test();
 // topicService.createTopic('topic1');
