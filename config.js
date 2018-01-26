@@ -1,8 +1,10 @@
-var queue_config = {
-    size : 100,
-    maxRetry : 1
+'use strict';
+
+const QueueConfig = {
+    size: 100,
+    maxRetry: 1
 };
 
 module.exports = {
-    queue_config : queue_config
-}
+    QueueConfig
+};

@@ -1,7 +1,8 @@
-var _ = require('lodash');
-var isJSON = function (str) {
+'use strict';
+const _ = require('lodash');
+const isJSON = function (str) {
     try {
-        var obj = JSON.parse(str);
+        const obj = JSON.parse(str);
         if (obj && typeof obj === 'object' && obj !== null) {
             return true;
         }
@@ -11,19 +12,19 @@ var isJSON = function (str) {
     return false;
 };
 
-var isPositiveNumber = function (value) {
+const isPositiveNumber = function (value) {
     if ((!parseInt(value) || value <= 0)) {
         return false;
     }
     return true;
 };
 
-var isValidFunction = function (obj) {
+const isValidFunction = function (obj) {
     return _.isFunction(obj);
 };
 
 module.exports = {
-    isJSON: isJSON,
-    isPositiveNumber: isPositiveNumber,
-    isValidFunction: isValidFunction
+    isJSON,
+    isPositiveNumber,
+    isValidFunction
 };

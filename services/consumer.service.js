@@ -1,8 +1,10 @@
-var util = require('../utilities/util');
-var topicService = require('./topic.service');
-var Consumer = require('../models/consumer');
+'use strict';
+const util = require('../utilities/util');
+const topicService = require('./topic.service');
+const Consumer = require('../models/consumer');
+const logger = require('../utilities/logger');
 
-var validateConsumer = function (topic, priority, handler) {
+const validateConsumer = function (topic, priority, handler) {
     if (!topicService.isValidTopic(topic)) {
         return Promise.reject(`Topic not found ${topic}`);
     }
@@ -11,20 +13,19 @@ var validateConsumer = function (topic, priority, handler) {
     }
     if (!util.isValidFunction(handler)) {
         return Promise.reject(`Consumer handler must be function`);
-    }
-    else {
+    } else {
         return Promise.resolve();
     }
 };
 
-var createConsumer = function (topic, priority, handler) {
+const createConsumer = function (topic, priority, handler) {
     return validateConsumer(topic, priority, handler)
-        .then(()=> {
-            var consumer = new Consumer(topic, priority, handler);
+        .then(() => {
+            const consumer = new Consumer(topic, priority, handler);
             return topicService.registerConsumerForTopic(topic, consumer)
                 .then(() => {
-                    console.log(`Consumer created successfully`);
                     consumer.print();
+                    logger.info(`Consumer created successfully`);
                     return Promise.resolve();
                 });
         });
@@ -46,5 +47,5 @@ createConsumer('topic1', 3, function(message){
 // createConsumer('topic1', 1, 'Strin');*/
 
 module.exports = {
-    createConsumer: createConsumer
+    createConsumer
 };

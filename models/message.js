@@ -1,5 +1,5 @@
-'use-strict';
-var shortId = require('shortid');
+'use strict';
+const shortId = require('shortid');
 
 
 class Message {

@@ -1,5 +1,6 @@
-'use-strict';
-var shortId = require('shortid');
+'use strict';
+const shortId = require('shortid');
+const logger = require('../utilities/logger');
 
 class Consumer {
     constructor(topic, priority, handler) {
@@ -17,17 +18,17 @@ class Consumer {
         return this._id;
     }
 
-    getHandler(){
+    getHandler() {
         return this._handler;
     }
 
-    getPriority(){
+    getPriority() {
         return this._priority;
     }
 
-    print(){
-        return console.log(`Consumer Details => Id : ${this.getId()},  Topic : ${this.getTopic()} , Priority : ${this.getPriority()}`);
+    print() {
+        return logger.info(`Consumer Details => Id : ${this.getId()},  Topic : ${this.getTopic()} , Priority : ${this.getPriority()}`);
     }
-};
+}
 
 module.exports = Consumer;
