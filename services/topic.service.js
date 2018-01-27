@@ -3,7 +3,6 @@ const _ = require('lodash');
 const logger = require('../utilities/logger')('topic.service');
 const topicVsConsumer = {};
 
-
 const isValidTopic = function (topic) {
     if (_.get(topicVsConsumer, topic)) {
         return true;

@@ -2,9 +2,9 @@
 
 const topicService = require('../../services/topic.service');
 const _ = require('lodash');
-const topic1 = 'topic_1';
-const topic2 = 'topic_2';
-const topic3 = 'topic_3';
+const topic1 = 'topic-1';
+const topic2 = 'topic-2';
+const topic3 = 'topic-3';
 
 describe('createTopic', function () {
     it('it should create topic 1', () => {

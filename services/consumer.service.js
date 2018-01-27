@@ -26,7 +26,7 @@ const createConsumer = function (topic, priority, handler) {
                 .then(() => {
                     consumer.print();
                     logger.info(`Consumer created successfully`);
-                    return Promise.resolve();
+                    return Promise.resolve(consumer);
                 });
         });
 };
