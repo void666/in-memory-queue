@@ -2,7 +2,6 @@
 
 const topicService = require('../../services/topic.service');
 const _ = require('lodash');
-const chai = require('chai');
 const topic1 = 'topic_1';
 const topic2 = 'topic_2';
 const topic3 = 'topic_3';
@@ -35,5 +34,4 @@ describe('createTopic', function () {
                 expect(_.get(data, 'topic')).equal(topic3);
             });
     });
-
 });
