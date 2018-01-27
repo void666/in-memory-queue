@@ -3,6 +3,7 @@
 // TODO(Sushim) : Enable this when being used.
 const CalendarItemService = require('../../services/calendar-item-service');
 const _ = require('lodash');
+const chai = require('chai');
 const calendarItemJson = {
     schedule: {
         date: '2017-10-26T13:30:00.603+0000',

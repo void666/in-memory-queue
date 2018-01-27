@@ -34,4 +34,5 @@ describe('createTopic', function () {
                 expect(_.get(data, 'topic')).equal(topic3);
             });
     });
+
 });
