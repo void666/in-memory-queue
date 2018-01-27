@@ -3,7 +3,6 @@ const utils = require('../utilities/util');
 const Queue = require('../models/queue');
 const async = require('async');
 const handlerService = require('./message.handler.service');
-const QueueConfiguration = require('../config').getQueueConfiguration();
 const logger = require('../utilities/logger')('queue.service');
 let QueueInstance = null;
 let pollingLock = false;
@@ -34,9 +33,9 @@ const startQueuePolling = function (next) {
  *
  */
 const initQueue = function () {
+    const QueueConfiguration = require('../config').getQueueConfiguration();
     const size = QueueConfiguration.getSize();
     const maxRetry = QueueConfiguration.getMaxRetry();
-
     if (!utils.isPositiveNumber(size) || !utils.isPositiveNumber(maxRetry)) {
         throw new Error(`Invalid size or retry provided for Queue : size - ${size}, maxRetry - ${maxRetry}`);
     }
@@ -74,6 +73,5 @@ const getStatus = function () {
 
 module.exports = {
     pushMessageToQueue,
-    QueueConfiguration,
     getStatus
 };
