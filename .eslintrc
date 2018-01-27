@@ -330,7 +330,7 @@
       ]
     ],
     "global-require": [
-      "error"
+      "off"
     ],
     "handle-callback-err": [
       "error"
