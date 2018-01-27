@@ -4,7 +4,7 @@ const _ = require('lodash');
 const Queue = require('../models/queue');
 const async = require('async');
 const handlerService = require('./message.handler.service');
-const QueueConfiguration = require('../config').QueueConfig;
+const QueueConfiguration = require('../config').getQueueConfiguration();
 const logger = require('../utilities/logger')('queue.service');
 let QueueInstance = null;
 let pollingLock = false;
@@ -35,8 +35,8 @@ const startQueuePolling = function (next) {
  *
  */
 const initQueue = function () {
-    const size = _.get(QueueConfiguration, 'size');
-    const maxRetry = _.get(QueueConfiguration, 'maxRetry');
+    const size = QueueConfiguration.getSize();
+    const maxRetry = QueueConfiguration.getMaxRetry();
 
     if (!utils.isPositiveNumber(size) || !utils.isPositiveNumber(maxRetry)) {
         throw new Error(`Invalid size or retry provided for Queue : size - ${size}, maxRetry - ${maxRetry}`);

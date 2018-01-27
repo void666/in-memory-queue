@@ -1,10 +1,31 @@
 'use strict';
 
-const QueueConfig = {
-    size: 100,
-    maxRetry: 1
+class QueueConfig {
+    constructor(size, maxRetry) {
+        this._size = size;
+        this._maxRetry = maxRetry;
+    }
+
+    getSize() {
+        return this._size;
+    }
+
+    getMaxRetry() {
+        return this._maxRetry;
+    }
+}
+
+let QueueConfigInstance = null;
+
+const setQueueConfiguration = function (size, maxRetry) {
+    QueueConfigInstance = new QueueConfig(size, maxRetry);
+};
+
+const getQueueConfiguration = function () {
+    return QueueConfigInstance;
 };
 
 module.exports = {
-    QueueConfig
+    setQueueConfiguration: setQueueConfiguration,
+    getQueueConfiguration : getQueueConfiguration
 };
