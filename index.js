@@ -3,7 +3,7 @@ const queueService = require('./services/queue.service');
 const messageService = require('./services/message.service');
 const consumerService = require('./services/consumer.service');
 const topicService = require('./services/topic.service');
-const config = require('../config');
+const config = require('./config');
 
 module.exports = {
     createConsumer: consumerService.createConsumer,
