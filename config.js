@@ -26,6 +26,6 @@ const getQueueConfiguration = function () {
 };
 
 module.exports = {
-    setQueueConfiguration: setQueueConfiguration,
-    getQueueConfiguration : getQueueConfiguration
+    setQueueConfiguration,
+    getQueueConfiguration
 };

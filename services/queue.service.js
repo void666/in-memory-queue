@@ -1,6 +1,5 @@
 'use strict';
 const utils = require('../utilities/util');
-const _ = require('lodash');
 const Queue = require('../models/queue');
 const async = require('async');
 const handlerService = require('./message.handler.service');
