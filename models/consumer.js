@@ -1,6 +1,6 @@
 'use strict';
 const shortId = require('shortid');
-const logger = require('../utilities/logger');
+const logger = require('../utilities/logger')('consumer');
 
 class Consumer {
     constructor(topic, priority, handler) {

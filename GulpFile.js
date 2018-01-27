@@ -83,7 +83,7 @@ gulp.task('check', ['eslint', 'test']);
 /**
  * Pre-push hook
  */
-// gulp.task('pre-push', ['check']);
+gulp.task('pre-push', ['check']);
 
 /**
  * Default task

@@ -5,7 +5,7 @@ const Queue = require('../models/queue');
 const async = require('async');
 const handlerService = require('./message.handler.service');
 const QueueConfiguration = require('../config').QueueConfig;
-const logger = require('../utilities/logger');
+const logger = require('../utilities/logger')('queue.service');
 let QueueInstance = null;
 let pollingLock = false;
 

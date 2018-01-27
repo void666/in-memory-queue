@@ -2,7 +2,7 @@
 const topicService = require('./topic.service');
 const _ = require('lodash');
 const Promise = require('bluebird');
-const logger = require('../utilities/logger');
+const logger = require('../utilities/logger')('message.handler.service');
 
 
 const consumerMessageProcessor = function (context) {

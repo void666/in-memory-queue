@@ -2,7 +2,7 @@
 const util = require('../utilities/util');
 const topicService = require('./topic.service');
 const Consumer = require('../models/consumer');
-const logger = require('../utilities/logger');
+const logger = require('../utilities/logger')('consumer.service');
 
 const validateConsumer = function (topic, priority, handler) {
     if (!topicService.isValidTopic(topic)) {

@@ -1,3 +1,4 @@
+/*
 const queueService = require('../services/queue.service');
 const messageService = require();
 
@@ -58,4 +59,4 @@ const inti = function () {
     });
 };
 
-inti();
+inti();*/

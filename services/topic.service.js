@@ -1,7 +1,8 @@
 'use strict';
 const _ = require('lodash');
+const logger = require('../utilities/logger')('topic.service');
 const topicVsConsumer = {};
-const logger = require('../utilities/logger');
+
 
 const isValidTopic = function (topic) {
     if (_.get(topicVsConsumer, topic)) {
@@ -16,7 +17,7 @@ const createTopic = function (topic) {
     } else {
         topicVsConsumer[topic] = [];
         logger.info(`Topic created successfully ${topic}`);
-        return Promise.resolve({ success: true });
+        return Promise.resolve({ success: true, topic });
     }
 };
 
