@@ -27,13 +27,11 @@
   "devDependencies": {
     "chai": "^4.1.2",
     "chai-subset": "^1.6.0",
-    "git-guppy": "^2.1.0",
     "gulp": "^3.9.1",
     "gulp-eslint": "^4.0.0",
     "gulp-if": "^2.0.2",
     "gulp-istanbul": "^1.1.2",
     "gulp-mocha": "^3",
-    "guppy-pre-push": "^0.2.1",
     "istanbul": "^0.4.5",
     "yargs": "^8.0.2"
   },

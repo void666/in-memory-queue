@@ -3,7 +3,6 @@
 const gulp = require('gulp');
 const mocha = require('gulp-mocha');
 const istanbul = require('gulp-istanbul');
-require('git-guppy')(gulp);
 const argv = require('yargs').argv;
 const eslint = require('gulp-eslint');
 const gulpIf = require('gulp-if');
