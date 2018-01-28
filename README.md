@@ -92,8 +92,9 @@ imqueue.createConsumer('topic1', 2, function (msg) {
 });
 ```
 
->####**Note**
-> >_The order of execution of each consumer depends on the increasing order of priority. Consumer handlers with priority 1 will be executed in parallel and then the consumer handler for priority 2 will be executed._ 
+##### _Note_
+
+>_The order of execution of each consumer depends on the increasing order of priority. Consumer handlers with priority 1 will be executed in parallel and then the consumer handler for priority 2 will be executed._ 
 
 `getStatus` : gets the status of the present queue. Returns promise and prints the status in queue log
 ```
@@ -107,9 +108,13 @@ return imqueue.getStatus()
     });
 ```
 ##### Installation : 
-> add a referrence to `in-memory-queue` as follows in `package.json`:
->> `"dependencies": {
-      "in-memory-queue": "git+https://github.com/void666/in-memory-queue.git"
-    },`
 
-> do `npm install`
+- add a referrence to `in-memory-queue` as follows in `package.json`:
+    ```
+    "dependencies": {
+    "in-memory-queue": "git+https://github.com/void666/in-memory-queue.git"}
+    ```
+- do    `npm install`
+
+##### Test : 
+- do `npm test`
