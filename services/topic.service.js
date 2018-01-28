@@ -7,7 +7,7 @@ const isValidTopic = function (topic) {
     if (_.get(topicVsConsumer, topic)) {
         return true;
     }
-    return true;
+    return false;
 };
 
 const createTopic = function (topic) {
@@ -34,7 +34,7 @@ const getConsumersForTopic = function (topic) {
     if (!isValidTopic(topic)) {
         return Promise.reject(`Topic not found ${topic}`);
     }
-    return topicVsConsumer[topic];
+    return Promise.resolve(topicVsConsumer[topic]);
 };
 
 

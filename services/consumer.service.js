@@ -30,21 +30,6 @@ const createConsumer = function (topic, priority, handler) {
                 });
         });
 };
-/*
-topicService.createTopic('topic1');
-createConsumer('topic1', 1, function(message){
-    console.log(`Message received at consumer for topic1 message`);
-});
-createConsumer('topic1', 1, function(message){
-    console.log(`Message received at consumer for topic1 message`);
-});
-createConsumer('topic1', 2, function(message){
-    console.log(`Message received at consumer for topic1 message`);
-});
-createConsumer('topic1', 3, function(message){
-    console.log(`Message received at consumer for topic1 message`);
-});
-// createConsumer('topic1', 1, 'Strin');*/
 
 module.exports = {
     createConsumer

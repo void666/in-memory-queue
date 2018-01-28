@@ -9,14 +9,6 @@ class Queue {
         this._queue = [];
     }
 
-    setSize(value) {
-        this._size = value;
-    }
-
-    setRetries(value) {
-        this._retries = 0;
-    }
-
     getSize() {
         return this._size;
     }
@@ -45,10 +37,15 @@ class Queue {
     }
 
     status() {
+        const obj = {
+            size: this.getSize(),
+            messages_in_queue: this.messagesInQueue(),
+            retries: this.getRetries()
+        };
         logger.info(
             `Size : ${this.getSize()}, Messages in Queue : ${this.messagesInQueue()}, Retries : ${this.getRetries()}`
         );
-        return;
+        return obj;
     }
 }
 

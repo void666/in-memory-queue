@@ -23,7 +23,7 @@ const createMessage = function (topic, json) {
             message.setValue(json);
             return queueService.pushMessageToQueue(message)
                 .then(() => {
-                    return ({ success: true });
+                    return ({ success: true, message });
                 })
                 .catch(err => {
                     logger.error('Unable to push message to queue :', message.getId(), err);

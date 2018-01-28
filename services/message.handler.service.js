@@ -17,6 +17,7 @@ const consumerMessageProcessor = function (context) {
         .then(() => {
             messageProcessedDetails[context.consumer.getId()].process_end = _.now();
             messageProcessedDetails[context.consumer.getId()].processed = true;
+            context.message.setProcessingDetails(messageProcessedDetails);
             return Promise.resolve(context.message);
         })
         .catch(err => {
@@ -39,37 +40,42 @@ const processMessage = function (message) {
         logger.info(`Message already processed, no further processing needed`);
         return Promise.resolve(message);
     }
-    const consumersForTopic = topicService.getConsumersForTopic(message.getTopic());
-    if (_.isEmpty(consumersForTopic)) {
-        logger.info(`No consumers found for topic ${message.getTopic()}`);
-        message.setProcessed(true);
-        return Promise.resolve(message);
-    } else {
-        const consumersByPriority = _.groupBy(consumersForTopic, consumer => {
-            return consumer.getPriority();
-        });
-        const keys = (_.keys(consumersByPriority).sort());
-        return Promise.mapSeries(keys, key => {
-            const thisLevelConsumers = consumersByPriority[key];
+    return topicService.getConsumersForTopic(message.getTopic())
+        .then(consumersForTopic => {
+            if (_.isEmpty(consumersForTopic)) {
+                logger.info(`No consumers found for topic ${message.getTopic()}`);
+                message.setProcessed(true);
+                return Promise.resolve(message);
+            } else {
+                const consumersByPriority = _.groupBy(consumersForTopic, consumer => {
+                    return consumer.getPriority();
+                });
+                const keys = (_.keys(consumersByPriority).sort());
+                return Promise.mapSeries(keys, key => {
+                    const thisLevelConsumers = consumersByPriority[key];
 
-            const promiseContexts = [];
-            _.each(thisLevelConsumers, consumer => {
-                const context = {};
-                context.consumer = consumer;
-                context.message = message;
-                context.retries = 0;
-                promiseContexts.push(consumerMessageProcessor(context));
-            });
-            return Promise.all(promiseContexts)
-                .then(result => {
-                    logger.info(`All consumer with priority ${key}, processed for ${message.getId()}`);
+                    const promiseContexts = [];
+                    _.each(thisLevelConsumers, consumer => {
+                        const context = {};
+                        context.consumer = consumer;
+                        context.message = message;
+                        context.retries = 0;
+                        promiseContexts.push(consumerMessageProcessor(context));
+                    });
+                    return Promise.all(promiseContexts)
+                        .then(() => {
+                            logger.info(`All consumer with priority ${key}, processed for ${message.getId()}`);
+                            return Promise.resolve(message);
+                        });
+                }).then(() => {
+                    logger.info(`All consumer for all priorities processed message ${message.getId()}`, message);
+                    message.setProcessed(true);
                     return Promise.resolve(message);
                 });
-        }).then(result => {
-            logger.info(`All consumer for all priorities processed message ${message.getId()}`, message);
-            return Promise.resolve(message);
+            }
+        }).catch(err => {
+            return Promise.reject(err);
         });
-    }
 };
 
 module.exports = {

@@ -34,10 +34,13 @@ const startQueuePolling = function (next) {
  */
 const initQueue = function () {
     const QueueConfiguration = require('../config').getQueueConfiguration();
+    if (!QueueConfiguration) {
+        throw new Error(`Queue configuration missing`);
+    }
     const size = QueueConfiguration.getSize();
     const maxRetry = QueueConfiguration.getMaxRetry();
     if (!utils.isPositiveNumber(size) || !utils.isPositiveNumber(maxRetry)) {
-        throw new Error(`Invalid size or retry provided for Queue : size - ${size}, maxRetry - ${maxRetry}`);
+        return Promise.reject(`Invalid size or retry provided for Queue : size - ${size}, maxRetry - ${maxRetry}`);
     }
     if (!QueueInstance) {
         QueueInstance = new Queue(size, maxRetry);
@@ -53,7 +56,11 @@ const initQueue = function () {
  */
 const pushMessageToQueue = function (message) {
     if (!QueueInstance) {
-        initQueue();
+        try {
+            initQueue();
+        } catch (err) {
+            return Promise.reject(err.toString());
+        }
     }
     if (QueueInstance.messagesInQueue() === QueueInstance.getSize()) {
         return Promise.reject(`Queue is full`);
@@ -66,9 +73,13 @@ const pushMessageToQueue = function (message) {
 
 const getStatus = function () {
     if (!QueueInstance) {
-        initQueue();
+        try {
+            initQueue();
+        } catch (err) {
+            return Promise.reject(err);
+        }
     }
-    QueueInstance.status();
+    return Promise.resolve(QueueInstance.status());
 };
 
 module.exports = {
