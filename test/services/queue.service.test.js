@@ -44,3 +44,14 @@ describe('queueService.pushMessageToQueue', function () {
         expect(dequeResult).equal(null);
     });
 });
+
+describe('queueService.getProcessedMessage', function () {
+    it('it should fetch the processed messages', () => {
+        messageService.createMessage(topic1, json1).then(() => {
+            queueService.getProcessedMessages()
+                .then(result => {
+                    expect(result[0].getProcessed()).equal(true);
+                });
+        });
+    });
+});

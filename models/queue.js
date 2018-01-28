@@ -7,6 +7,7 @@ class Queue {
         this._size = size;
         this._retries = retries;
         this._queue = [];
+        this._processed_messages = [];
     }
 
     getSize() {
@@ -28,7 +29,7 @@ class Queue {
         this._queue.unshift(message);
     }
 
-    messagesInQueue() {
+    numberOfMessagesInQueue() {
         return this._queue.length;
     }
 
@@ -39,13 +40,22 @@ class Queue {
     status() {
         const obj = {
             size: this.getSize(),
-            messages_in_queue: this.messagesInQueue(),
-            retries: this.getRetries()
+            messages_in_queue: this.numberOfMessagesInQueue(),
+            retries: this.getRetries(),
+            processed_messages: this.getProcessedMessages().length
         };
         logger.info(
-            `Size : ${this.getSize()}, Messages in Queue : ${this.messagesInQueue()}, Retries : ${this.getRetries()}`
+            `Size : ${this.getSize()}, Messages in Queue : ${this.numberOfMessagesInQueue()}, Retries : ${this.getRetries()}, Processed Messages : ${this.getProcessedMessages().length}`
         );
         return obj;
+    }
+
+    getProcessedMessages() {
+        return this._processed_messages;
+    }
+
+    setProcessedMessages(processedMessages) {
+        this._processed_messages = processedMessages;
     }
 }
 

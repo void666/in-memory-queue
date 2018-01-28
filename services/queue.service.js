@@ -62,7 +62,7 @@ const pushMessageToQueue = function (message) {
             return Promise.reject(err.toString());
         }
     }
-    if (QueueInstance.messagesInQueue() === QueueInstance.getSize()) {
+    if (QueueInstance.numberOfMessagesInQueue() === QueueInstance.getSize()) {
         return Promise.reject(`Queue is full`);
     }
     message.setAllowedRetries(QueueInstance.getRetries());
@@ -82,7 +82,33 @@ const getStatus = function () {
     return Promise.resolve(QueueInstance.status());
 };
 
+const getProcessedMessages = function () {
+    if (!QueueInstance) {
+        try {
+            initQueue();
+        } catch (err) {
+            return Promise.reject(err.toString());
+        }
+    }
+    return Promise.resolve(QueueInstance.getProcessedMessages());
+};
+const pushMessageToProcessedMessage = function (message) {
+    if (!QueueInstance) {
+        try {
+            initQueue();
+        } catch (err) {
+            return Promise.reject(err.toString());
+        }
+    }
+    const processedMessages = QueueInstance.getProcessedMessages();
+    processedMessages.push(message);
+    QueueInstance.setProcessedMessages(processedMessages);
+    return Promise.resolve();
+};
+
 module.exports = {
     pushMessageToQueue,
-    getStatus
+    getStatus,
+    getProcessedMessages,
+    pushMessageToProcessedMessage
 };

@@ -70,7 +70,11 @@ const processMessage = function (message) {
                 }).then(() => {
                     logger.info(`All consumer for all priorities processed message ${message.getId()}`, message);
                     message.setProcessed(true);
-                    return Promise.resolve(message);
+                    const queueService = require('./queue.service');
+                    return queueService.pushMessageToProcessedMessage(message)
+                        .then(() => {
+                            return Promise.resolve(message);
+                        });
                 });
             }
         }).catch(err => {

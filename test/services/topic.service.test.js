@@ -67,5 +67,3 @@ describe('topicService.getConsumerForTopic', function () {
             });
     });
 });
-
-

@@ -91,10 +91,38 @@ imqueue.createConsumer('topic1', 2, function (msg) {
     console.log(`Consumer priority ${consumer.getPriority()}`);
 });
 ```
-
 #### _Note_
 
 >_The order of execution of each consumer depends on the increasing order of priority. Consumer handlers with priority 1 will be executed in parallel and then the consumer handler for priority 2 will be executed._ 
+
+`getProcessedMessages` : Returns list of all messages processed so far. Returns promise.
+```
+const imqueue = require('in-memory-queue');
+const Promise = require('bluebird');
+const topic = 'topic1';
+const jsonString = {code: 'json1'};
+imqueue.setQueueConfiguration(100, 2);
+return imqueue.createTopic(topic).then((result) => {
+    return imqueue.createMessage(topic, JSON.stringify(jsonString))
+        .then((result) => {
+            let msg = result.message;
+            console.log(`Message topic ${msg.getId()}`);
+            console.log(`Message topic ${msg.getTopic()}`);
+            console.log(`Message created timestamp ${msg.getCreated()}`);
+            console.log(`Message allowed retries ${msg.getAllowedRetries()}`);
+            console.log(`Message value ${msg.getValue()}`);
+            console.log(`Message processed ${msg.getProcessed()}`);
+            return Promise.resolve();
+        }).then(() => {
+            return imqueue.getProcessedMessages().then((result) => {
+                let message = result[0];
+                console.log(`Message processed ${message.getProcessed()}`);
+                console.log(`Message Processing details ${message.getProcessingDetails()}`);
+            });
+        });
+});
+
+```
 
 `getStatus` : gets the status of the present queue. Returns promise and prints the status in queue log
 ```
