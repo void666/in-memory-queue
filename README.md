@@ -1,5 +1,5 @@
 # in-memory-queue
-##### Properties :
+### Properties :
   - Concurrent read and writes
   - Retry mechanism
   - Parallel and series processing of jobs based on consumer priority definition
@@ -9,7 +9,7 @@
   - Supports consumer tasks as promises.
   - Auto start polling of queue, on first message.
 
-##### Interface : 
+### Interface : 
 `setQueueConfiguration` : Takes two parameters , `size` and `maxRetry`, both positive integers.
 Returns promise.
 
@@ -92,7 +92,7 @@ imqueue.createConsumer('topic1', 2, function (msg) {
 });
 ```
 
-##### _Note_
+#### _Note_
 
 >_The order of execution of each consumer depends on the increasing order of priority. Consumer handlers with priority 1 will be executed in parallel and then the consumer handler for priority 2 will be executed._ 
 
@@ -107,7 +107,7 @@ return imqueue.getStatus()
         console.log(`Queue max retrys : ${result.retries}`);
     });
 ```
-##### Installation : 
+### Installation : 
 
 - add a referrence to `in-memory-queue` as follows in `package.json`:
     ```
@@ -116,5 +116,5 @@ return imqueue.getStatus()
     ```
 - do    `npm install`
 
-##### Test : 
+### Test : 
 - do `npm test`
