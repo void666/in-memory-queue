@@ -1,4 +1,6 @@
-# in-memory-queue
+# in-memory-queue 
+#####  https://www.npmjs.com/package/in-memory-queue
+
 ### Properties :
   - Concurrent read and writes
   - Retry mechanism
