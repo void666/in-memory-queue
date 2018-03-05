@@ -139,12 +139,18 @@ return imqueue.getStatus()
 ```
 ### Installation : 
 
-- add a referrence to `in-memory-queue` as follows in `package.json`:
+- Method 1 (Update):
+    - do `npm install in-memory-queue`    
+
+
+- Method 2 (Direct clone): 
+    - add a referrence to `in-memory-queue` as follows in `package.json`:
     ```
     "dependencies": {
     "in-memory-queue": "git+https://github.com/void666/in-memory-queue.git"}
     ```
-- do    `npm install`
+    - do  `npm install`
+- 
 
 ### Test : 
 - do `npm test`
