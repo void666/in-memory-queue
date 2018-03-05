@@ -77,7 +77,7 @@ gulp.task('fix', () => {
 /**
  * Global check
  */
-gulp.task('check', ['eslint']);
+gulp.task('check', ['eslint', 'test']);
 
 /**
  * Pre-push hook
