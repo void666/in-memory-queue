@@ -1,6 +1,7 @@
 # in-memory-queue 
 [![npm version](https://badge.fury.io/js/in-memory-queue.svg)](https://badge.fury.io/js/in-memory-queue)
 [![npm downloads](https://img.shields.io/npm/dt/in-memory-queue.svg)](https://img.shields.io/npm/dt/in-memory-queue.svg)
+[![coverage](https://coveralls.io/repos/github/void666/in-memory-queue/badge.svg)](https://coveralls.io/github/void666/in-memory-queue)
 
 ### Properties :
   - Concurrent read and writes
