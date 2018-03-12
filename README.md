@@ -1,5 +1,6 @@
 # in-memory-queue 
-#####  https://www.npmjs.com/package/in-memory-queue
+[![npm version](https://badge.fury.io/js/in-memory-queue.svg)](https://badge.fury.io/js/in-memory-queue)
+[![npm downloads](https://img.shields.io/npm/dt/in-memory-queue.svg)](https://img.shields.io/npm/dt/in-memory-queue.svg)
 
 ### Properties :
   - Concurrent read and writes
