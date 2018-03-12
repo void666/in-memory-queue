@@ -1,6 +1,6 @@
 {
   "name": "in-memory-queue",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Simple in-memory job queue",
   "main": "index.js",
   "scripts": {
