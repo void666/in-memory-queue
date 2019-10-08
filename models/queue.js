@@ -8,6 +8,7 @@ class Queue {
         this._retries = retries;
         this._queue = [];
         this._processed_messages = [];
+        this._messages = [];
     }
 
     getSize() {
@@ -27,6 +28,7 @@ class Queue {
 
     enQueue(message) {
         this._queue.unshift(message);
+        this._messages.push(message);
     }
 
     numberOfMessagesInQueue() {
@@ -56,6 +58,10 @@ class Queue {
 
     setProcessedMessages(processedMessages) {
         this._processed_messages = processedMessages;
+    }
+
+    getMessages() {
+        return this._messages;
     }
 }
 
