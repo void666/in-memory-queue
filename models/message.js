@@ -10,6 +10,7 @@ class Message {
         this._value = '';
         this._processing_details = [];
         this._processed = false;
+        this._dropped = false;
         this._allowed_retries = 0;
     }
 
@@ -47,6 +48,14 @@ class Message {
 
     setProcessed(value) {
         this._processed = value;
+    }
+
+    getDropped() {
+        return this._dropped;
+    }
+
+    setDropped(value) {
+        this._dropped = value;
     }
 
     setAllowedRetries(value) {

@@ -92,6 +92,7 @@ const getProcessedMessages = function () {
     }
     return Promise.resolve(QueueInstance.getProcessedMessages());
 };
+
 const pushMessageToProcessedMessage = function (message) {
     if (!QueueInstance) {
         try {
@@ -106,9 +107,21 @@ const pushMessageToProcessedMessage = function (message) {
     return Promise.resolve();
 };
 
+const getQueueMessages = function() {
+    if (!QueueInstance) {
+        try {
+            initQueue();
+        } catch (err) {
+            return Promise.reject(err.toString());
+        }
+    }
+    return Promise.resolve(QueueInstance.getMessages());
+};
+
 module.exports = {
     pushMessageToQueue,
     getStatus,
     getProcessedMessages,
-    pushMessageToProcessedMessage
+    pushMessageToProcessedMessage,
+    getQueueMessages,
 };

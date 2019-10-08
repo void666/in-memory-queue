@@ -10,6 +10,9 @@ module.exports = {
     createConsumer: consumerService.createConsumer,
     createMessage: messageService.createMessage,
     createTopic: topicService.createTopic,
+    getConsumersForTopic: topicService.getConsumersForTopic,
+    getTopics: topicService.getTopics,
     getStatus: queueService.getStatus,
-    getProcessedMessages: queueService.getProcessedMessages
+    getProcessedMessages: queueService.getProcessedMessages,
+    getQueueMessages: queueService.getQueueMessages
 };

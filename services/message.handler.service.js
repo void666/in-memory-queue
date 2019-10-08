@@ -45,6 +45,7 @@ const processMessage = function (message) {
             if (_.isEmpty(consumersForTopic)) {
                 logger.info(`No consumers found for topic ${message.getTopic()}`);
                 message.setProcessed(true);
+                message.setDropped(true);
                 return Promise.resolve(message);
             } else {
                 const consumersByPriority = _.groupBy(consumersForTopic, consumer => {
