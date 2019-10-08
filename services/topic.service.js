@@ -37,10 +37,19 @@ const getConsumersForTopic = function (topic) {
     return Promise.resolve(topicVsConsumer[topic]);
 };
 
+const getTopics = function () {
+    const topics = Object.keys(topicVsConsumer);
+    if (topics.length === 0) {
+        return Promise.reject(`No topics created`);
+    } else {
+        return Promise.resolve(topics);
+    }
+}
 
 module.exports = {
     isValidTopic,
     createTopic,
     registerConsumerForTopic,
-    getConsumersForTopic
+    getConsumersForTopic,
+    getTopics
 };
